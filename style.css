@@ -1,0 +1,316 @@
+/* ==========================================================
+   Portfolio de Thierno - feuille de style
+   Thème sombre, couleur principale : bleu
+   Pour changer les couleurs, modifie seulement les variables
+   juste en dessous (section :root).
+   ========================================================== */
+
+:root {
+  --fond: #0e1726;          /* fond de la page */
+  --surface: #16233a;       /* fond des blocs (cartes, champs) */
+  --ligne: #2a3f61;         /* bordures et séparations */
+  --texte: #e6edf7;         /* texte principal */
+  --texte-doux: #9fb0c9;    /* texte secondaire */
+  --accent: #4c9aff;        /* couleur principale (bleu) */
+  --accent-clair: #7db4ff;  /* bleu au survol */
+
+  --police-titres: Georgia, "Iowan Old Style", "Times New Roman", serif;
+  --police-texte: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+
+  color-scheme: dark;
+}
+
+/* ---------- Base ---------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--fond);
+}
+
+body {
+  margin: 0;
+  padding: 0 1.25rem;
+  font-family: var(--police-texte);
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--texte);
+  background: var(--fond);
+}
+
+/* Colonne centrée : en-tête, contenu et pied de page */
+header,
+main,
+footer {
+  max-width: 54rem;
+  margin-inline: auto;
+}
+
+p,
+li {
+  max-width: 68ch; /* évite les lignes trop longues */
+}
+
+a {
+  color: var(--accent);
+  text-underline-offset: 0.2em;
+}
+
+a:hover {
+  color: var(--accent-clair);
+}
+
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--accent-clair);
+  outline-offset: 3px;
+}
+
+/* ---------- Titres ---------- */
+
+h1,
+h2 {
+  font-family: var(--police-titres);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(1.6rem, 5vw, 2.5rem);
+}
+
+/* Petit trait bleu sous le titre principal */
+h1::after {
+  content: "";
+  display: block;
+  width: 4rem;
+  height: 0.3rem;
+  margin-top: 1rem;
+  background: var(--accent);
+}
+
+h2 {
+  margin: 0 0 1rem;
+  font-size: clamp(1.4rem, 3.5vw, 1.8rem);
+}
+
+h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.1rem;
+  color: var(--accent-clair);
+}
+
+h4 {
+  margin: 1rem 0 0.25rem;
+  font-size: 1rem;
+  color: var(--texte);
+}
+
+/* ---------- En-tête et menu ---------- */
+
+header {
+  padding: 3rem 0 1.5rem;
+  border-bottom: 1px solid var(--ligne);
+}
+
+nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.5rem;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+nav a {
+  display: inline-block;
+  padding: 0.4rem 0;
+  color: var(--texte);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+}
+
+nav a:hover {
+  color: var(--texte);
+  border-bottom-color: var(--accent);
+}
+
+/* ---------- Sections ---------- */
+
+main > section {
+  margin-top: 3rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--ligne);
+  scroll-margin-top: 1rem;
+}
+
+main > section:first-child {
+  margin-top: 0;
+  padding-top: 2.5rem;
+  border-top: 0;
+}
+
+ul {
+  padding-left: 1.25rem;
+}
+
+li {
+  margin-bottom: 0.3rem;
+}
+
+img {
+  display: block;
+  max-width: min(100%, 18rem);
+  height: auto;
+  margin-top: 1.5rem;
+  border: 1px solid var(--ligne);
+  border-radius: 0.5rem;
+}
+
+/* ---------- Blocs (compétences et projets) ---------- */
+
+article {
+  padding: 1.25rem;
+  background: var(--surface);
+  border-radius: 0.5rem;
+}
+
+article ul {
+  margin: 0.25rem 0 0;
+}
+
+/* Compétences : une grille de blocs, un par catégorie */
+#competences {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: 1rem;
+  align-items: start;
+}
+
+#competences > h2,
+#competences > p {
+  grid-column: 1 / -1;
+}
+
+#competences article {
+  border-left: 0.3rem solid var(--accent);
+  border-radius: 0.25rem;
+}
+
+/* Projets : un bloc encadré par projet */
+#projets article {
+  border: 1px solid var(--ligne);
+}
+
+#projets a {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-weight: 600;
+}
+
+/* ---------- Tableau « À propos de moi » ---------- */
+
+table {
+  width: 100%;
+  max-width: 34rem;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 0.7rem 0.9rem;
+  text-align: left;
+  border-bottom: 1px solid var(--ligne);
+}
+
+thead th {
+  background: var(--surface);
+  border-bottom: 2px solid var(--accent);
+}
+
+th:first-child,
+td:first-child {
+  color: var(--texte-doux);
+}
+
+/* ---------- Formulaire ---------- */
+
+form {
+  max-width: 34rem;
+}
+
+form div {
+  margin-bottom: 1rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-weight: 600;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 0.65rem 0.8rem;
+  font: inherit;
+  color: var(--texte);
+  background: var(--surface);
+  border: 1px solid var(--ligne);
+  border-radius: 0.35rem;
+}
+
+textarea {
+  resize: vertical;
+}
+
+button {
+  padding: 0.75rem 1.5rem;
+  font: inherit;
+  font-weight: 700;
+  color: var(--fond);
+  background: var(--accent);
+  border: 0;
+  border-radius: 0.35rem;
+  cursor: pointer;
+}
+
+button:hover {
+  background: var(--accent-clair);
+}
+
+#contact h3 {
+  margin-top: 2.5rem;
+  color: var(--texte);
+}
+
+/* ---------- Pied de page ---------- */
+
+footer {
+  margin-top: 3rem;
+  padding: 1.5rem 0 2.5rem;
+  color: var(--texte-doux);
+  font-size: 0.9rem;
+  border-top: 1px solid var(--ligne);
+}
+
+/* ---------- Animations (seulement si l'utilisateur les accepte) ---------- */
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  a,
+  nav a,
+  button {
+    transition: color 0.15s, background-color 0.15s, border-color 0.15s;
+  }
+}
